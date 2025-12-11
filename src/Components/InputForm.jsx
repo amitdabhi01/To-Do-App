@@ -1,14 +1,18 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const InputForm = ({addTodo}) => {
+const InputForm = ({addTodo, editVal}) => {
   const [input, setInput] = useState({
     task:"",
     description:"",
     completed:false
   });
+
+  useEffect(() => {
+    editVal ? setInput(editVal) : null;
+  }, [editVal]);
 
   const handleInputData = (identifier,e) => {
     setInput((prev) => {

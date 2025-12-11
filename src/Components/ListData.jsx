@@ -2,7 +2,7 @@ import React from "react";
 import Table from "react-bootstrap/Table";
 import Container from "react-bootstrap/Container";
 
-const ListData = ({ todo,toggleCompleted }) => {
+const ListData = ({ todo,toggleCompleted,editTodo }) => {
   return (
     <>
       <Container className="border p-5 bg-white rounded-4 shadow">
@@ -30,10 +30,10 @@ const ListData = ({ todo,toggleCompleted }) => {
                         <td>{todo.task}</td>
                         <td>{todo.description}</td>
                         <td>
-                            <button className="btn btn-primary text-white">Edit</button>
+                            <button className="btn btn-primary text-white" onClick={() => editTodo(todo.id)}>Edit</button>
                         </td>
                         <td>
-                            <button className="btn btn-danger text-white">Delete</button>
+                            <button className="btn btn-danger text-white" onClick={() => deleteTodo(todo.id)}>Delete</button>
                         </td>
                     </tr>
                 )
