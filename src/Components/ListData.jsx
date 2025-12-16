@@ -2,7 +2,7 @@ import React from "react";
 import Table from "react-bootstrap/Table";
 import Container from "react-bootstrap/Container";
 
-const ListData = ({ todo,toggleCompleted,editTodo }) => {
+const ListData = ({ todo, toggleCompleted, editTodo, deleteTodo }) => {
   return (
     <>
       <Container className="border p-5 bg-white rounded-4 shadow">
@@ -17,26 +17,37 @@ const ListData = ({ todo,toggleCompleted,editTodo }) => {
           </thead>
           <tbody>
             {todo.map((todo) => {
-                return (
-                    <tr key={todo.id}>
-                        <td>
-                            <input type="checkbox" 
-                             checked={todo.completed}
-                             onChange={() => {
-                                toggleCompleted(todo.id);
-                             }}
-                            />
-                        </td>
-                        <td>{todo.task}</td>
-                        <td>{todo.description}</td>
-                        <td>
-                            <button className="btn btn-primary text-white" onClick={() => editTodo(todo.id)}>Edit</button>
-                        </td>
-                        <td>
-                            <button className="btn btn-danger text-white" onClick={() => deleteTodo(todo.id)}>Delete</button>
-                        </td>
-                    </tr>
-                )
+              return (
+                <tr key={todo.id}>
+                  <td>
+                    <input
+                      type="checkbox"
+                      checked={todo.completed}
+                      onChange={() => {
+                        toggleCompleted(todo.id);
+                      }}
+                    />
+                  </td>
+                  <td>{todo.task}</td>
+                  <td>{todo.description}</td>
+                  <td>
+                    <button
+                      className="btn btn-primary text-white"
+                      onClick={() => editTodo(todo.id)}
+                    >
+                      Edit
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      className="btn btn-danger text-white"
+                      onClick={() => deleteTodo(todo.id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              );
             })}
           </tbody>
         </Table>

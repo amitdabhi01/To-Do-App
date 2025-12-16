@@ -2,6 +2,7 @@ import { React, useState } from "react";
 import InputForm from "./Components/InputForm";
 import Header from "./Components/Header";
 import ListData from "./Components/ListData";
+import Status from "./Components/Status";
 
 const App = () => {
   const initialValues = [
@@ -49,7 +50,13 @@ const App = () => {
     const editTodo = todoData.find((t) => t.id === id);
 
     setEditVal(editTodo);
-  }
+  };
+
+  const deleteTodo = (id) => {
+    const deleteTodo = todoData.filter((t) => t.id !== id);
+
+    setTodoData(deleteTodo);
+  };
 
   const toggleTaskCompleted = (id) => {
     setTodoData((prevData) =>
@@ -59,13 +66,32 @@ const App = () => {
     );
   };
 
+  const totalTask = todoData.length;
+
+  const completedTask = todoData.filter(
+    (todo) => todo.completed === true
+  ).length;
+
+  const pendingTask = totalTask - completedTask;
+
   return (
     <>
       <Header />
 
-      <InputForm addTodo={addTodo} editVal={editVal}/>
+      <InputForm addTodo={addTodo} editVal={editVal} />
 
-      <ListData todo={todoData} toggleCompleted={toggleTaskCompleted} editTodo={editTodo}/>
+      <Status
+        total={totalTask}
+        completed={completedTask}
+        pending={pendingTask}
+      />
+
+      <ListData
+        todo={todoData}
+        toggleCompleted={toggleTaskCompleted}
+        editTodo={editTodo}
+        deleteTodo={deleteTodo}
+      />
     </>
   );
 };
