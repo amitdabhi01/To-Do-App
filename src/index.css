@@ -40,7 +40,6 @@ body {
   position: absolute !important;
   inset: 0 !important;
   border-radius: inherit !important;
-
   background: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 0.6),
